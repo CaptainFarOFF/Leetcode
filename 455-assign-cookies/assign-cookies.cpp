@@ -5,19 +5,14 @@ public:
     sort(g.begin(), g.end());
     sort(s.begin(), s.end());
 
-    int n = g.size();
-    int m = s.size();
-
     int l=0;
     int r=0;
 
-    while(l<m && r<n){
-        if(g[r] <= s[l]){
+    while(l<s.size() && r<g.size()){
+        if(g[r] <= s[l])
             r++;
-        }
         l++;
     }
     return r;
-
     }
 };
