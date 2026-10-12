@@ -7,14 +7,11 @@ public:
 
         for(int i=1; i<n; i++){
             for(int j=0; j<=i; j++){
-                if(j==0){
+                if(j==0 || j == i){
                     dp[i].push_back(1);
                     continue;
                 }
-                if(j==i){
-                    dp[i].push_back(1);
-                    continue;
-                }
+                
                 dp[i].push_back(dp[i-1][j-1] + dp[i-1][j]);
             }
         }
