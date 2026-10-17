@@ -35,6 +35,41 @@ public:
         int r = grid.size();
         int c = grid[0].size();
         vector<vector<vector<int>>> dp(r, vector<vector<int>> (c, vector<int> (c, -1)));
-        return f(0,0,c-1,r,c,grid,dp);
+
+        for(int j1=0, i=r-1; j1<c; j1++){
+            for(int j2=0; j2<c; j2++){
+                if(j1 == j2){
+                    dp[i][j1][j2] = grid[i][j1];
+                }else{
+                    dp[i][j1][j2] = grid[i][j1] + grid[i][j2];
+                }
+            }
+        }
+
+        for(int i=r-2; i>=0; i--){
+            for(int j1=0; j1<c; j1++){
+                for(int j2=0; j2<c; j2++){
+                    int maxi = -1e8;
+                    for(int a =-1; a <= 1; a++){
+                        for(int b= -1; b<= 1; b++){
+                            int value = 0;
+                            if(j1 == j2){
+                                value = grid[i][j1];
+                            }else{
+                                value = grid[i][j1] + grid[i][j2];
+                            }
+                            if(j1+a >= 0 && j2+b >= 0 && j1+a < c && j2+b < c){
+                                value += dp[i+1][j1+a][j2+b];
+                            }else{
+                                value = -1e8;
+                            }
+                            maxi = max(value, maxi);
+                        }
+                    }
+                    dp[i][j1][j2] = maxi;
+                    }
+                }
+            }
+        return dp[0][0][c-1];
     }
 };
