@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int reverse(int x) {
+        int r=0;
+        long long n=0;
+        if(x==0){
+            return 0;
+        }else if(x>0){
+            n=x;
+        }else{
+            n=-(long long)x;
+        }
+
+        vector<int> rem;
+
+        while(n != 0){
+            r = n % 10;
+            rem.push_back(r);
+            n/=10;
+        }
+
+        int m = rem.size();
+        long long rev = 0;
+
+        for(int i=0; i<m; i++){
+            rev += rem[m-i-1]*pow(10,i);
+        }
+
+        if(x < 0){
+            rev = -rev;
+        }
+
+        if(rev < INT_MIN || rev > INT_MAX){
+            return 0;
+        }
+
+        return rev;
+    }
+};
