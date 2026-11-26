@@ -2,14 +2,7 @@ class Solution {
 public:
     int reverse(int x) {
         int r=0;
-        long long n=0;
-        if(x==0){
-            return 0;
-        }else if(x>0){
-            n=x;
-        }else{
-            n=-(long long)x;
-        }
+        long long n= abs((long long)x);
 
         long long rev = 0;
 
