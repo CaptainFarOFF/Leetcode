@@ -11,19 +11,12 @@ public:
             n=-(long long)x;
         }
 
-        vector<int> rem;
+        long long rev = 0;
 
         while(n != 0){
             r = n % 10;
-            rem.push_back(r);
             n/=10;
-        }
-
-        int m = rem.size();
-        long long rev = 0;
-
-        for(int i=0; i<m; i++){
-            rev += rem[m-i-1]*pow(10,i);
+            rev = rev * 10 + r;
         }
 
         if(x < 0){
